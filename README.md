@@ -459,7 +459,7 @@ GeoSentinel demonstrates that modern instance segmentation models like YOLOv8-Se
 
 # 👨‍💻 Author
 
-**Sujan KS**
+**Prajwal RD,Sujan KS and Vinayak J Prabhu**
 
 <p align="center">
   Built for rapid disaster response · For emergency use only<br>
