@@ -1,5 +1,18 @@
 # 🛰️ GeoSentinel — AI-Powered Landslide Detection System
 
+
+> **Portfolio prototype, not an operational emergency-warning system.** Model confidence is not a calibrated estimate of landslide danger or a validated evacuation decision.
+
+## Repository provenance and scope
+
+This repository is a fork of [Sujan-lab-cell/GeoSentinel-Landslide-Detection-System](https://github.com/Sujan-lab-cell/GeoSentinel-Landslide-Detection-System). The upstream project and contributors retain their attribution. The technical sections and reported results below describe the repository; they should not be read as a claim that every component was independently developed or evaluated by the fork owner.
+
+- **Task:** YOLOv8 instance segmentation of visible landslide regions. This is not a U-Net project or a forecast of future slope failure.
+- **Reported test sample:** 40 images; mask mAP@0.50 0.731 and mask recall 0.679. These small-sample results do not establish field readiness.
+- **Evidence:** [training notebook](model.ipynb), [training curves](results.png), [application](app1.py) and the detailed results below.
+- **Reproduction limits:** the exact epoch count of the plotted/evaluated run needs confirmation against original run logs; the configuration below is a reference, not a verified run manifest. Split independence should be checked at source-image/location level before augmentation.
+
+
 <p align="center">
   <img src="https://img.shields.io/badge/Model-YOLOv8--Seg-orange?style=for-the-badge&logo=python" />
   <img src="https://img.shields.io/badge/Framework-Streamlit-red?style=for-the-badge&logo=streamlit" />
@@ -35,7 +48,7 @@
 
 **GeoSentinel** is an AI-powered disaster detection system built to identify landslides in real time from satellite images, aerial photographs, and drone video footage. Powered by **YOLOv8 instance segmentation**, the application delivers immediate visual analysis, geographic risk mapping, and automated emergency alerts — all through a clean, dark-themed web UI built with Streamlit.
 
-The system is designed for field deployment by disaster management agencies, providing a pipeline that goes from raw image input to SMS + email alerts sent to officers in seconds.
+The prototype demonstrates an image-to-alert workflow. Field deployment, delivery latency and emergency-response effectiveness have not been established by the results documented here.
 
 ---
 
@@ -142,14 +155,14 @@ Training was performed using transfer learning from the COCO-pretrained YOLOv8 n
 
 ## 📈 Training Performance
 
-Training and validation metrics were logged across all 50 epochs using Ultralytics' built-in logger.
+Training and validation curves from the recorded experiment are shown below. The epoch count should be confirmed against the original run logs.
 
 ### Training Graphs
 ![Training Results](results.png)
 
 Key observations from training:
 - Box loss and segmentation loss converged steadily after epoch 30.
-- Validation mAP50 plateaued around epoch 70–80, with best weights saved automatically.
+- The validation curves should be interpreted together with the original training logs and checkpoint selection criteria.
 - No significant overfitting observed; val loss tracked train loss closely.
 
 ---
@@ -300,14 +313,14 @@ Overall, the results show that the model can reliably distinguish between landsl
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/geosentinel.git
-cd geosentinel
+git clone https://github.com/Prajwal-Rd-bond/GeoSentinel-Landslide-Detection-System.git
+cd GeoSentinel-Landslide-Detection-System
 
 # 2. Install dependencies
 pip install -r requirements.txt
 
 # 3. Run the app
-streamlit run app.py
+streamlit run app1.py
 ```
 
 ### Requirements
